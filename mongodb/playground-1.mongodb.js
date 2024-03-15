@@ -48,20 +48,20 @@ db.users.insertMany([{
     name: "Yesenia",
     lastname: "Giraldo",
     email: "yesenia@gmail.com",
-    city: "Miami",
-    country: "USA",
+    city: "Syndey",
+    country: "Australia",
     salary: 4000,
     age: 32,
     height: 1.60,
-    weight: 60
+    weight: 72
 },
 {
     name: "Laura",
     lastname: "Tabares",
     email: "laura@gmail.com",
     city: "New York",
-    country: "USA",
-    salary: 4000,
+    country: "Canada",
+    salary: 4200,
     age: 17,
     height: 1.70,
     weight: 60
@@ -133,15 +133,49 @@ db.users.find({ $and:[{country: { $eq: "España"}},{salary: { $gt: 3000} }]});
 
 //Obtener todos los usuarios que tengan entre 25 y 35 años.
 
-db.users.find({ $and:[{age: { $gt: "España"}},{salary: { $gt: 3000} }]});
+db.users.find({ $and:[{age: { $gte: 25}},{age: { $lte: 35} }]});
 
 
 //Obtener a todos los usuarios que no sean de Estados Unidos.
+
+db.users.find({country : {$ne : "USA"}});
+
 //Obtener a todos los usuarios que sean de Londres y que ganen más de $2500 o que tengan más de 30 años.
+db.users.find({$and: [{ city: "Londres" }, { $or: [ { salary: { $gt: 2500 } }, { age: { $gt: 30 } }]}]})
+
+
+
+db.users.find({ 
+    city: "Londres", 
+    $or:[ 
+        { salary: { $gt: 2500 }},
+        { age:{ $gt: 30 }}
+    ]
+});
+
+
 //Obtener a todos los usuarios que sean de Australia y tengan un peso mayor a 140 libras.
+
+db.users.find({ $and:[{country: { $eq: "Australia"}},{weight: { $gt: 70} }]});
+
 //Obtener a todos los usuarios que no sean de Londres ni de París.
+
+db.users.find({$and: [{city : {$ne : "Londres"}},{city : {$ne: "Paris"}} ]});
+
 //Obtener a todos los usuarios que ganen menos de $2000 al mes o que tengan más de 40 años.
+
+db.users.find({$or: [{salary : {$lte: 2000}},{age: {$gt: 40}}]})
+
 //Obtener a todos los usuarios que sean de Canadá y ganen más de $4000 al mes o que tengan una altura mayor a 180 cm.
+
+db.users.find({ 
+    country: "Canada", 
+    $or:[ 
+        { salary: { $gt: 4000 }},
+        { height:{ $gt: 1.80 }}
+    ]
+});
+
 //Obtener todos los usuarios que sean de Italia y tengan entre 20 y 30 años.
 //Obtener todos los usuarios que no tengan un correo electrónico registrado.
 //Obtener todos los usuarios que sean de Francia y que su salario esté entre $3000 y $5000 al mes.
