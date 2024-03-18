@@ -401,3 +401,86 @@ db.users.updateMany(
   { height: { $lte: 1.6 } },
   {$set: {city: "Paris"}}
 )
+
+
+use(database);
+db.createCollection(collection);
+
+db.users.find({ ciudad : "New York"})
+
+db.users.find({});
+
+//Eliminar todos los usuarios que tienen un salario menor que 2000 dólares.
+db.users.deleteMany({salario : {$lt : 2500}});
+db.users.find({salario : {$lt : 2500}});
+//Eliminar usuarios que tienen una edad menor que 25 años.
+db.users.deleteMany({edad : {$lt : 25}});
+db.users.find({edad : {$lt : 25}});
+//Borrar todos los usuarios que viven en "París".
+db.users.deleteMany({ciudad : "Paris"});
+db.users.find({ciudad : "Paris"});
+//Eliminar usuarios que tienen un peso superior a 180 libras.
+db.users.deleteMany({peso : {$gt : 180}});
+db.users.find({peso : {$gt : 180}});
+//Eliminar usuarios que tienen una altura inferior a 160 centímetros.
+db.users.deleteMany({altura : {$lt : 160}});
+db.users.find({altura : {$lt : 160}});
+//Eliminar todos los usuarios que tienen el nombre "John" y el apellido "Doe".
+db.users.deleteMany({nombres : "John", apellido : "Doe"});
+db.users.find({nombres : "Juan", apellidos : "Doe"});
+
+//Borrar usuarios que tienen una dirección de correo electrónico específica, por ejemplo, "borrar@riwi.com".
+
+db.users.deleteOne({correo: {$eq: "borrar@riwi.com"}});
+
+//Eliminar usuarios que no tienen una dirección de correo electrónico registrada.
+
+db.users.deleteMany({correo: {$eq: ""}});
+
+//Eliminar usuarios que viven en "Tokyo"
+db.users.find({ciudad : "Tokyo"});
+//Borrar todos los usuarios que son menores de 18 años.
+
+db.users.deleteMany({edad: {$lt: 18}});
+
+//Eliminar usuarios que tienen un salario igual a 0.
+
+db.users.deleteMany({salario: {$eq: 0}});
+
+//Borrar usuarios que viven en "New York" y tienen un salario superior a 5000 dólares.
+
+db.users.deleteMany({ciudad: {$eq: "New York"}}, {salario: {$eq:5000 }});
+
+//Eliminar usuarios que tienen una dirección de correo electrónico que contiene la palabra "spam".
+
+db.users.deleteMany({correo: {$regex: /spam/i }});
+
+//Borrar usuarios que viven en "Bello" y tienen más de 50 años.
+
+db.users.deleteMany({ciudad: {$eq: "Bello"}}, {edad: {$eq:50 }});
+
+//Eliminar todos los usuarios que tienen el apellido "González".
+
+db.users.deleteMany({apellido: {$eq: "Gonzales"}});
+//
+//Borrar usuarios que tienen una edad superior a 70 años.
+
+db.users.deleteMany({edad: {$gt: 70}});
+//
+//Eliminar usuarios que tienen un país de residencia igual a "Canadá" y un salario inferior a 4000 dólares.
+
+db.users.deleteMany({ciudad: {$eq: "Canada"}}, {salario: {$lt:4000 }});
+//
+//Borrar usuarios que tienen un salario entre 1000 y 2000 dólares.
+
+db.users.deleteMany({salario: {$eq: 1000}}, {salario: {$lt:2000 }});
+
+//Eliminar usuarios que tienen una edad igual a 30 años.
+
+db.users.deleteMany({edad: {$eq: 30}});
+
+//Borrar usuarios que tienen una altura superior a 190 centímetros.
+
+db.users.deleteMany({altura: {$gt: 190}});
+//
+db.users.deleteMany({});
